@@ -1,20 +1,25 @@
+#!/usr/bin/python3
+"""
+Pascal Trangle
+"""
+
 
 def pascal_triangle(n):
-    """
-    Creates a list of lists of integers representing Pascal's triangle of n.
-    Returns an empty list if n <= 0.
-    """
+    '''
+    Creates a list of lists of integers in a Pascal's triangle
+    of a given integer.
+    '''
     if n <= 0:
         return []
-
-    triangle = []
-    for i in range(n):
-        row = [1]  # First element of each row is always 1
-        if triangle:  # If triangle is not empty
-            prev_row = triangle[-1]  # Get the previous row
-            for j in range(len(prev_row) - 1):  # Iterate through previous row
-                row.append(prev_row[j] + prev_row[j + 1])  # Compute current element
-            row.append(1)  # Last element of each row is always 1
-        triangle.append(row)
-
-    return triangle
+    else:
+        res = []
+        for i in range(n):
+            if len(res) == 0:
+                res.append([1])
+            else:
+                row = [1]
+                for j in range(1, len(res[-1])):
+                    row.append(res[-1][j] + res[-1][j - 1])
+                row.append(1)
+                res.append(row)
+        return res
